@@ -21,9 +21,9 @@ class BowlingGame
 
     while frame < 10 # works until the frames count won't achieve to ten\
       if spare?
-        score += 10 + @rolls[fir_val_in_frame + 2].to_i # with spare
+        score += standard_frame_score +  spare_bonus # with spare bomus
       else
-        score += @rolls[fir_val_in_frame].to_i + @rolls[fir_val_in_frame + 1].to_i # simple situation
+        score += standard_frame_score  # simple situation
       end
 
       frame += 1
@@ -42,6 +42,16 @@ class BowlingGame
     else
       false
     end
+  end
+
+  # standard_frame_score method -  returns sum of the values in the frame
+  def standard_frame_score
+    @rolls[fir_val_in_frame].to_i + @rolls[fir_val_in_frame + 1].to_i
+  end
+
+  # spare_bonus method - returns values that equal to first value in the next frame
+  def spare_bonus
+    @rolls[fir_val_in_frame + 2].to_i
   end
 end
 
