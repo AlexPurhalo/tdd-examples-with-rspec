@@ -1,4 +1,13 @@
 class BowlingGame
+  # sets instance variable with current frame by default to zero
+  def initialize
+    @fir_val_in_frame = 0
+  end
+
+  # fir_val_in_frame method - returns the value of @fir_val_in_frame instance
+  def fir_val_in_frame
+    @fir_val_in_frame
+  end
 
   # pins method - counts the score
   def pins(rolls) # takes the array with numbers as parameter
@@ -9,17 +18,16 @@ class BowlingGame
   def score
     frame = 0 # default count of the frames
     score = 0 # default value for score
-    curr_frame = 0 # by default to first frame
 
     while frame < 10 # works until the frames count won't achieve to ten\
-      if spare?(curr_frame)
-        score += 10 + @rolls[curr_frame + 2].to_i # with spare
+      if spare?
+        score += 10 + @rolls[fir_val_in_frame + 2].to_i # with spare
       else
-        score += @rolls[curr_frame].to_i + @rolls[curr_frame + 1].to_i # simple situation
+        score += @rolls[fir_val_in_frame].to_i + @rolls[fir_val_in_frame + 1].to_i # simple situation
       end
 
       frame += 1
-      curr_frame += 2
+      @fir_val_in_frame += 2
     end
 
     score
@@ -27,9 +35,9 @@ class BowlingGame
 
   private
   # spare method - returns true if spare, otherwise returns false
-  def spare?(curr_frame) # takes the current and next frames
+  def spare?
     # if sum of current and next frames is equal to ten, returns true, otherwise returns false
-    if @rolls[curr_frame].to_i + @rolls[curr_frame + 1].to_i == 10
+    if @rolls[fir_val_in_frame].to_i + @rolls[fir_val_in_frame + 1].to_i == 10
       true
     else
       false
