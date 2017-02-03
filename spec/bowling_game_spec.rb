@@ -18,4 +18,10 @@ describe BowlingGame do
     game.pins([4,6,5] + [0])
     expect(game.score).to eq(20)
   end
+
+  it 'scores a game with strike' do
+    game = BowlingGame.new
+    game.pins([10,5,3] + [0])
+    expect(game.score).to eq(26)
+  end
 end
