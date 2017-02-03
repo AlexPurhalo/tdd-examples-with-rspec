@@ -12,4 +12,10 @@ describe BowlingGame do
     game.pins([2, 5])
     expect(game.score).to eq(7)
   end
+
+  it 'scores a game with spare' do
+    game = BowlingGame.new
+    game.pins([4,6,5] + [0])
+    expect(game.score).to eq(20)
+  end
 end
